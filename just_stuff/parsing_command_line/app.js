@@ -6,9 +6,21 @@ yargs
         command: 'add',
         aliases: ['-a', '--add'],
         desc: 'Adds a new note',
-        builder: (yargs) => yargs.default('value', 'true'),
+        builder: {
+            title: {
+                describe: 'Note title',
+                demandOption: true,
+                type: 'string'
+            },
+            body: {
+                describe: 'Note body',
+                demandOption: true,
+                type: 'string'
+            }
+        },
         handler: (argv) => {
-            console.log('Adds function is executed')
+            console.log('Note title: ', argv.title)
+            console.log('Note body: ', argv.body)
         }
     })
     .command({
