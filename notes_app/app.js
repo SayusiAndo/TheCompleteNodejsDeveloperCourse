@@ -1,5 +1,44 @@
-const validator = require('validator')
-const chalk = require('chalk')
+const yargs = require('yargs/yargs')(process.argv.slice(2));
+const noteManager = require('./notes')
 
-console.log(chalk.green('SUCCESS!'));
-console.log(chalk.bgGreenBright('bgGreenBright'))
+// noinspection BadExpressionStatementJS
+yargs
+    .command({
+        command: 'add',
+        aliases: ['-a', '--add'],
+        desc: 'Adds a new note',
+        builder: {
+            title: {
+                describe: 'Title of the new note',
+                demandOption: true,
+                type: 'string'
+            },
+            body: {
+                describe: 'Body of the new note',
+                demandOption: false,
+                type: 'string'
+            }
+        },
+        handler: (argv) => {
+            noteManager.add(argv.title, argv.body);
+        }
+    })
+    .command({
+        command: 'remove',
+        aliases: ['-r', '--remove'],
+        desc: 'Removes the provided note by title',
+        builder: {
+            title: {
+                describe: 'Title of the note going to be removed',
+                demandOption: true,
+                type: 'string'
+            }
+        },
+        handler: (argv) => {
+            noteManager.remove(argv.title);
+        }
+    })
+    .demandCommand()
+    .help()
+    .wrap(72)
+    .argv;
