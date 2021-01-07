@@ -1,4 +1,5 @@
 const fs = require('fs')
+const chalk = require('chalk')
 
 class Note {
     title;
@@ -21,9 +22,15 @@ const add = function add(title, body) {
         newNote.body = body;
         data.push(newNote);
         writeData(data);
-        console.log('A note with title: ' + title + ' is added.')
+        console.log(
+            chalk.green('A note with title: ') +
+            chalk.bgGray.green(title) +
+            chalk.green(' is added.'));
     } else {
-        console.log('A note with title: ' + title + ' already exists.')
+        console.log(
+            chalk.red('A note with title: ') +
+            chalk.bgGrey.redBright(title) +
+            chalk.red(' already exists and this one is not added.'));
     }
 }
 
@@ -31,8 +38,17 @@ const remove = function remove(title) {
     const data = loadData();
     if (data.length !== 0) {
         const result = data.filter(item => item.title !== title);
-        writeData(result);
-        console.log('Note with title: ' + title + ' has been removed!');
+        if (data.length > result.length) {
+            writeData(result);
+            console.log(
+                chalk.green('Note with title: ') +
+                chalk.bgGrey.green(title) +
+                chalk.green(' has been removed!'));
+        } else {
+            console.log(
+                chalk.yellow('No item removed.')
+            );
+        }
     }
 }
 
