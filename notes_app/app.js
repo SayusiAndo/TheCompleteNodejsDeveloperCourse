@@ -5,7 +5,6 @@ const noteManager = require('./notes')
 yargs
     .command({
         command: 'add',
-        aliases: ['-a', '--add'],
         desc: 'Adds a new note',
         builder: {
             title: {
@@ -25,7 +24,6 @@ yargs
     })
     .command({
         command: 'remove',
-        aliases: ['-r', '--remove'],
         desc: 'Removes the provided note by title',
         builder: {
             title: {
