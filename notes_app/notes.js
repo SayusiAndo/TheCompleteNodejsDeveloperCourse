@@ -30,9 +30,7 @@ const add = function add(title, body) {
 const remove = function remove(title) {
     const data = loadData();
     if (data.length !== 0) {
-        const result = data.filter(item => item.title !== title
-        );
-        console.log(result)
+        const result = data.filter(item => item.title !== title);
         writeData(result);
         console.log('Note with title: ' + title + ' has been removed!');
     }
