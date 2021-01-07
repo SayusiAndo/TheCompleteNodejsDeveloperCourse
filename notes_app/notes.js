@@ -8,7 +8,7 @@ class Note {
 
 const dataFileName = 'data.json';
 
-const add = function add(title, body) {
+const add = (title, body) => {
     const data = loadData();
     const duplicates = data.filter((elem) => {
         if (elem.title === title) {
@@ -34,10 +34,10 @@ const add = function add(title, body) {
     }
 }
 
-const remove = function remove(title) {
+const remove = (title) => {
     const data = loadData();
     if (data.length !== 0) {
-        const result = data.filter(item => item.title !== title);
+        const result = data.filter((item) => item.title !== title);
         if (data.length > result.length) {
             writeData(result);
             console.log(
@@ -52,12 +52,12 @@ const remove = function remove(title) {
     }
 }
 
-const writeData = function (data) {
+const writeData = (data) => {
     const dataJSON = JSON.stringify(data);
     fs.writeFileSync(dataFileName, dataJSON);
 }
 
-const loadData = function () {
+const loadData = () => {
     try {
         const buffer = fs.readFileSync(dataFileName);
         const dataJSON = buffer.toString();

@@ -18,9 +18,7 @@ yargs
                 type: 'string'
             }
         },
-        handler: (argv) => {
-            noteManager.add(argv.title, argv.body);
-        }
+        handler: (argv) => noteManager.add(argv.title, argv.body)
     })
     .command({
         command: 'remove',
@@ -32,9 +30,7 @@ yargs
                 type: 'string'
             }
         },
-        handler: (argv) => {
-            noteManager.remove(argv.title);
-        }
+        handler: (argv) => noteManager.remove(argv.title)
     })
     .demandCommand()
     .help()
