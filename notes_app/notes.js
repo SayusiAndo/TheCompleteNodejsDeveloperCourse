@@ -65,6 +65,30 @@ const list = () => {
     }
 }
 
+const read = (title) => {
+    const data = loadData();
+
+    const note = data.find((note) => note.title === title)
+
+    if (note) {
+        if (note.body) {
+            console.log(chalk.grey('|========================|'))
+            console.log(chalk.grey('|') + note.title + chalk.grey(' |'))
+            console.log(chalk.grey('|-------------------------|'))
+            console.log(chalk.grey('| ') + note.body + chalk.grey(' |'))
+            console.log(chalk.grey('|========================|'))
+        } else {
+            console.log(chalk.grey('|========================|'))
+            console.log(chalk.grey('|') + note.title + chalk.grey(' |'))
+            console.log(chalk.grey('|-------------------------|'))
+            console.log(chalk.grey('| ') + chalk.red.inverse('No body!') + chalk.grey(' |'))
+            console.log(chalk.grey('|========================|'))
+        }
+    } else {
+        console.log(chalk.red.inverse('There is no note with title: ' + title))
+    }
+}
+
 const writeData = (data) => {
     const dataJSON = JSON.stringify(data);
     fs.writeFileSync(dataFileName, dataJSON);
@@ -84,5 +108,6 @@ const loadData = () => {
 module.exports = {
     add: add,
     remove: remove,
-    list: list
+    list: list,
+    read: read
 }

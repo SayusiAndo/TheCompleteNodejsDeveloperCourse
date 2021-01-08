@@ -39,6 +39,18 @@ yargs
             noteManager.list()
         }
     })
+    .command({
+        command: 'read',
+        desc: 'Displays content of a note by title',
+        builder: {
+            title: {
+                describe: 'Title of the note',
+                demandOption: true,
+                type: 'string'
+            }
+        },
+        handler: (argv) => noteManager.read(argv.title)
+    })
     .demandCommand()
     .help()
     .wrap(72)
