@@ -32,6 +32,13 @@ yargs
         },
         handler: (argv) => noteManager.remove(argv.title)
     })
+    .command({
+        command: 'list',
+        desc: 'Lists notes',
+        handler: () => {
+            noteManager.list()
+        }
+    })
     .demandCommand()
     .help()
     .wrap(72)

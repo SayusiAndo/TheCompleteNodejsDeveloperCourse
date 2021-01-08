@@ -48,6 +48,23 @@ const remove = (title) => {
     }
 }
 
+const list = () => {
+    const data = loadData();
+    console.log(chalk.yellow.inverse('=== Notes ==='))
+    console.log(chalk.yellow(' Amount: ' + data.length))
+
+    if (data.length > 0) {
+        let counter = 0;
+        data.forEach((note) => {
+            console.log(
+                chalk.blue('| ' + counter + ' | ') +
+                chalk.green(note.title) + ' |'
+            )
+            counter++
+        })
+    }
+}
+
 const writeData = (data) => {
     const dataJSON = JSON.stringify(data);
     fs.writeFileSync(dataFileName, dataJSON);
@@ -66,5 +83,6 @@ const loadData = () => {
 
 module.exports = {
     add: add,
-    remove: remove
+    remove: remove,
+    list: list
 }
