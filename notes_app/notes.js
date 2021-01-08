@@ -10,11 +10,7 @@ const dataFileName = 'data.json';
 
 const add = (title, body) => {
     const data = loadData();
-    const duplicates = data.filter((elem) => {
-        if (elem.title === title) {
-            return true;
-        }
-    })
+    const duplicates = data.filter(elem => elem.title === title)
 
     if (duplicates.length === 0) {
         const newNote = new Note();
