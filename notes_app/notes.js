@@ -67,9 +67,7 @@ const list = () => {
 
 const read = (title) => {
     const data = loadData();
-
     const note = data.find((note) => note.title === title)
-
     if (note) {
         if (note.body) {
             console.log(chalk.grey('|========================|'))
